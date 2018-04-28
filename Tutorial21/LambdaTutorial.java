@@ -1,23 +1,33 @@
+interface MachWas {
+	void machen();
+}
+
+class Macher {
+	public void machtIrgendwas(MachWas mw) {
+		mw.machen();
+	}
+}
+
 public class LambdaTutorial {
+
 	public static void main(String[] args) {
-		// Lambda-Ausdrücke sind anonyme Methoden, also Methoden ohne Namen
-		// Sie werden benutzt um eine Methode eines funktionalen Interfaces zu implementieren
-		// Frage: Was ist denn ein funktionales Interface?
-		// Ein funktionales Interface, ist ein Interface, welches lediglich eine (abstrakte) Methode besitzt.
+		// Ein Lambda ist eine Funktion ohne Bezeichner.
+		// Ein Lambda kann als Parameter übergeben.
+		// Ein Lambda kann die Funktion eines funktionalen Interfaces überschreiben.
+		// Was ist ein funktionales Interface?
+		// Ein funktionales Interface, ist ein Interface mit lediglich EINER Funktion.
 		
-		// 6 Zeilen Code
-		Runnable r1 = new Runnable() {
+		Macher m1 = new Macher();
+		MachWas mw = new MachWas() {
 			@Override
-			public void run() {
-				System.out.println("Das herkömmliche Vorgehen.");
-			}
+			public void machen() {
+				System.out.println("Das ist aber blöd");
+			}	
 		};
+		m1.machtIrgendwas(mw);
 		
-		// Aufbau eines Lambda-Ausdrucks: (param1, param2, ...) -> { Funktionalität }
-		// 1 Zeile Code
-		Runnable r2 = () -> System.out.println("Neues Vorgehen mit Lambda-Ausdrücken.");
-		
-		r1.run();
-		r2.run();
+		Macher m2 = new Macher();
+		// Aufbau eines Lambdas: (param1, param2, ...) -> { Code }
+		m2.machtIrgendwas( () -> System.out.println("Das sieht doch viel schöner aus"));
 	}
 }
